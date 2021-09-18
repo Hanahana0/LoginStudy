@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+    </head>
+    <style>
+        #wrap {
+            margin: 0 auto;
+            padding: 20px;
+            width: auto;
+            text-align: center;
+            background-color: rgb(231, 231, 231);
+        }
+        #content {
+            margin: 0 auto;
+            padding: 20px;
+            width: auto;
+            text-align: center;
+        }
+        #login_panel {
+            margin: 0 auto;
+            padding: 0;
+            display: inline-block;
+            text-align: center;
+        }
+        #login_panel input {
+            border: 1px solid rgb(172, 172, 172);
+            border-radius: 5px;
+            padding: 2px;
+            margin: 10px;
+            font-size: 15px;
+        }
+        label {
+            font-size: 15px;
+            font-weight: bold;
+        }
+        button {
+            width: 100px;
+            height: 30px;
+            border: 1px solid rgb(172, 172, 172);
+            border-radius: 7px;
+        }
+        #id_area {
+            float: right;
+        }
+    </style>
+    <body>
+        <form action="login" method="post" id="wrap">
+            <div id="login_panel">
+                <div id="id_area">
+                    <label for="s_id">ID :</label>
+                    <input type="text" id="s_id" name="u_id">
+                </div>
+                <div id="pw_area">
+                    <label for="s_pw">pw :</label>
+                    <input type="password" id="s_pw" name="u_pw">
+                </div>
+                <div id="content">
+                    <button type="button" id="btn" value="Login">Login</button>
+                </div>
+              </div>
+        </form>
+
+            <!-- ********************** -->
+            <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+            <!-- ********************** -->
+            <script>
+                $(function () {
+                    $("#s_id").focus();
+                    
+                    $("#btn").bind("click", function () {
+
+                    	document.forms[0].submit();
+                        
+                        var id =$("#s_id").val();
+                        var pw =$("#s_pw").val();
+                    	
+                        if (id === "admin" && pw === "1234") {
+
+                            //id와 pw가 맞았을 경우
+                            $.ajax({
+                                
+                                url: "login.jsp",
+                            }).done(function(data){
+                            })
+
+                        }else{
+                        	$("#s_id").val("");
+                            $("#s_pw").val("");
+                            alert("아이디와 비밀번호를 확인해주세요.");
+                        }
+
+                    });
+                });
+            </script>
+        </body>
+    </html>
